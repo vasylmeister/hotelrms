@@ -1,2 +1,29 @@
-<h1>StaticPages#contact</h1>
-<p>Find me in app/views/static_pages/contact.html.erb</p>
+<% provide(:title, "Contact") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <h3>We are happy to hear from you</h3>
+            <p>Enter you contact data and your message and we will respond you as soon as possible </p>
+            <form class="form-horizontal">
+              <div class="form-group">
+                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="5" >Hi, my name is </textarea>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-default">Send</button>
+              </div>
+            </form>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+          <h3>Address:</h3>
+          <p>3441 Snail Island Ave</p>
+          <p>33152, Miami, FL</p>
+          <p>United States</p>
+        </div>
+    </div>
+</div>
