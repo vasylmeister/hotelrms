@@ -1,0 +1,60 @@
+$dashboard-border: 1px solid #d9d9d9;
+
+
+#name {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+
+  &:hover {
+    text-overflow: inherit;
+    overflow: visible;
+    background-color: #fff;
+    z-index: 1;
+    display: inline-block;
+    position: relative;
+  }
+}
+
+.dashboard-row-item, .dashboard-menu-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 2px;
+}
+
+
+.row-container {
+  display: flex;
+}
+
+.col-name {
+  flex-basis: 0;
+  flex-grow: 2;
+}
+
+
+.col-something {
+  display: none;
+}
+ 
+.dashboard-menu-item {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #b3b3b3;
+}
+
+.dashboard-row-item {
+  padding: 5px;
+  text-align: center;
+  border-right: $dashboard-border;
+  border-bottom: $dashboard-border;
+  border-left: $dashboard-border;
+}
+
+.dashboard-menu {
+  margin-bottom: 2px;
+}
+
+.col-pax {
+  max-width: 40px;
+}
