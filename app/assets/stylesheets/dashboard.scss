@@ -58,3 +58,25 @@ $dashboard-border: 1px solid #d9d9d9;
 .col-pax {
   max-width: 40px;
 }
+
+.dashboard-nav-menu {
+  margin-bottom: 10px;
+}
+.date-container {
+  display: inline-block;
+  padding: 10px;
+}
+
+.border-bottom {
+  border-bottom: $dashboard-border;
+}
+
+.dashboard-nav-menu {
+  display: flex;
+}
+
+.dashboard-nav-menu-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 2px;
+}
