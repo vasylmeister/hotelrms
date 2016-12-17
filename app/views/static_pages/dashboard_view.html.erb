@@ -12,9 +12,12 @@
   tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. 
   Donec sed odio dui.</p>
 
-<div class="dashboard-nav-menu">
+<div class="dashboard-nav-menu" id="dashboard-nav-menu">
   <div class="date-container dashboard-nav-menu-item">
-
+    <input type="text" id="datepicker">
+    <a href="#" id="date-left"><span class="glyphicon glyphicon-chevron-left"></span></a><!-- no spaces or tabs to avoid uderline when link is clicked !--> 
+    <p id="date-field"></p>
+    <a href="#" id="date-right"><span class="glyphicon glyphicon-chevron-right"></span></a><!-- no spaces or tabs to avoid uderline when link is clicked !--> 
   </div>
   <div class="nav-container dashboard-nav-menu-item">
     <ul class="nav nav-tabs">
@@ -152,3 +155,10 @@
     
     
 </div>
+
+
+<script type="text/javascript">
+    // chain a few methods for the first datepicker, jQuery style!
+    //$datepicker.pikaday('show').pikaday('nextMonth');
+</script>
+

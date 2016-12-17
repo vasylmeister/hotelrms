@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require moment
+//= require pikaday
+//= require pikaday.jquery
 //= require_tree .
