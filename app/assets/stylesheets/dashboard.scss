@@ -95,3 +95,49 @@ $dashboard-border: 1px solid #d9d9d9;
   width: 0px;
   border: 0px;
 }
+
+.refresh-button {
+  display: inline-block;
+}
+
+.col-room {
+  min-width: 80px;
+  max-width: 80px;
+  
+}
+
+#date-left, #date-right {
+  font-size: 20px;
+  margin-right: 3px;
+  margin-left: 3px;
+}
+
+ #double-date-right, #double-date-left {
+  font-size: 20px;
+  margin-right: 3px;
+  margin-left: 3px;
+  visibility: hidden;
+   
+}
+
+
+.date-container {
+  line-height: 2;
+  vertical-align: middle;
+}
+
+#date-field {
+  font-size: 18px;
+  display: inline-block;
+    color: #337ab7;
+}
+
+.last-day {
+  display: none;
+}
+
+#date-field-container {
+  width: 175px;
+  display: inline-block;
+  text-align: center;
+}

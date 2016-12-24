@@ -1,0 +1,49 @@
+
+  <div id="month-container">
+    
+
+    <div class="row-container dashboard-menu">
+      <div class="col-room dashboard-menu-item">
+        <div>Room</div>
+      </div>
+      <% for i in 1..30 %>
+      <%= content_tag(:div, content_tag(:div, "", class: "month-day", id: "menu-day#{i}"), class: ["col-month", "dashboard-menu-item"]) %>
+      <% end %>
+      <div class="col-month dashboard-menu-item last-day">
+        <div class="month-day" id="menu-day31"></div>
+      </div>
+    </div>
+
+
+    <div class="row-container dashboard-grid">
+      <div class="col-room dashboard-row-item">
+        <div>101</div>
+      </div>
+      <% for i in 1..30 %>
+      <%= content_tag(:div, content_tag(:div, "", class: "col-day", id: "month-day#{i}"), class: ["col-month", "dashboard-row-item"]) %>
+      <% end %>
+      <div class="col-month dashboard-row-item last-day">
+        <div class="col-day" id="month-day31"></div>
+      </div>
+    </div>
+
+    <div class="row-container dashboard-grid">
+      <div class="col-room dashboard-row-item">
+        <div>102</div>
+      </div>
+      <% for i in 1..30 %>
+      <%= content_tag(:div, content_tag(:div, "", class: "col-day", id: "month-day#{i}"), class: ["col-month", "dashboard-row-item"]) %>
+      <% end %>
+      <div class="col-month dashboard-row-item last-day">
+        <div class="col-day" id="month-day31"></div>
+      </div>      
+    </div>
+    
+  
+  </div>
+  
+<script>
+  currentDateFieldVal = moment($('#date-field').text(), "Do MMMM YYYY");
+  setMonthDays(currentDateFieldVal);
+  addLastDay(currentDateFieldVal);
+</script>
