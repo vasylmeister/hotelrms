@@ -1,4 +1,4 @@
-  // set week days when select week view on dashboard. called from week_dashboard_container partial
+  // set week days when select week view on dashboard. called from week_dashboard_container partial, setGridDays
   function setWeekDays(defaultday = moment()) {
     var weekDays = document.getElementsByClassName("week-day");
     weekDays[0].innerHTML = defaultday.subtract(1, 'd').format('Do');
@@ -7,6 +7,7 @@
     };
   };
   
+  // set week days when select week view on dashboard. called from month_dashboard_container partial, serGridDays
   function setMonthDays(defaultday = moment()) {
     var monthDays = document.getElementsByClassName("month-day");
     defaultday.subtract(7, 'd');
@@ -15,25 +16,7 @@
     };
   };
   
-  function addLastDay(defaultday = moment()) {
-    if (defaultday.daysInMonth() == 31) {
-      $('.last-day').css("display", "inline");
-    };
-  };
-  
-  function visibleArrows(show = "day") {
-    if (show == "week") {
-      $("#double-date-right, #double-date-left").css("visibility", "visible");
-      $("#date-right, #date-left").css("visibility", "visible");
-    } else if (show == "month") {
-      $("#date-right, #date-left").css("visibility", "hidden");
-      $("#double-date-right, #double-date-left").css("visibility", "visible");
-    } else {
-      $("#double-date-right, #double-date-left").css("visibility", "hidden");
-      $("#date-right, #date-left").css("visibility", "visible");
-    }
-  }
-  
+  // called from queries on date select and on date navigations
   function setGridDays (date) {
     if ($("#week-container").length) {
       setWeekDays(date)
@@ -44,6 +27,27 @@
       } catch(err){
         return
       }
+    }
+  }
+  
+  // default grid has 30days, this functions ads 31st day. called from month_dashboard_container partial 
+  function addLastDay(defaultday = moment()) {
+    if (defaultday.daysInMonth() == 31) {
+      $('.last-day').css("display", "inline");
+    };
+  };
+  
+  // weird functions to show or hide date navigation arrows for different views
+  function showArrows(show = "day") {
+    if (show == "day") {
+      $("#double-date-right, #double-date-left").css("visibility", "hidden");
+      $("#date-right, #date-left").css("visibility", "visible");      
+    } else if (show == "week") {
+      $("#double-date-right, #double-date-left").css("visibility", "visible");
+      $("#date-right, #date-left").css("visibility", "visible");
+    } else {
+      $("#date-right, #date-left").css("visibility", "hidden");
+      $("#double-date-right, #double-date-left").css("visibility", "visible");
     }
   }
   

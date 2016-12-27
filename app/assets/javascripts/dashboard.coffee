@@ -1,9 +1,9 @@
 $(document).on "turbolinks:load",  ->
   
-  #set todays date
+  # set todays date
   $('#date-field').html(moment().format('Do MMMM YYYY'));
   
-  #calendar
+  # calendar
   $('#date-field').pikaday({ 
     field: document.getElementById('datepicker'),
     firstDay: 1,
@@ -16,16 +16,14 @@ $(document).on "turbolinks:load",  ->
       setGridDays(selectedDate);
     });
   
-  #move one day before or after the displayed date.
+  # move one day before or after the displayed date.
   $('.date-container').on('click', '#date-left', ((event) ->
     event.preventDefault()
     dateField = $('#date-field')
     displayedDate = dateField.text()
     newDate = moment(displayedDate, "Do MMMM YYYY").subtract(1, 'd')
     dateField.html(newDate.format('Do MMMM YYYY'))
-    try setWeekDays(newDate)
-    catch e
-      return
+    setGridDays(newDate)
     ));
 
   $('#date-right').click (event)->
@@ -34,11 +32,9 @@ $(document).on "turbolinks:load",  ->
     displayedDate = dateField.text()
     newDate = moment(displayedDate, "Do MMMM YYYY").add(1, 'd')
     dateField.html(newDate.format('Do MMMM YYYY'))
-    try setWeekDays(newDate)
-    catch e
-      return
+    setGridDays(newDate)
     
-  #move 7 days before or after the displayed date.
+  # move 7 days before or after the displayed date.
   $('.date-container').on('click', '#double-date-left', ((event) ->
     event.preventDefault()
     dateField = $('#date-field')
@@ -55,29 +51,31 @@ $(document).on "turbolinks:load",  ->
     newDate = moment(displayedDate, "Do MMMM YYYY").add(7, 'd')
     dateField.html(newDate.format('Do MMMM YYYY'))
     setGridDays(newDate)
-    
+  
+  
+  # refresh current view  
   $('.refresh-button').click (event)->
     event.preventDefault()
     $("#dashboard-container").load("/reload_container?view=day");
-    
-  $('#week-button').click (event)->
-    event.preventDefault()
-    $("#dashboard-container").load("/reload_container?view=week")
-    $("li.active").attr("class", "")
-    $('#week-button').parent().attr("class", "active")
-    visibleArrows("week")
-    
-    
-  $('#day-button').click (event)->
+  
+  # view navigation  
+  $('#day-view').click (event)->
     event.preventDefault()
     $("#dashboard-container").load("/reload_container?view=day")
     $("li.active").attr("class", "")
-    $('#day-button').parent().attr("class", "active")
-    visibleArrows()
+    $('#day-view').parent().attr("class", "active")
+    showArrows()
     
-  $('#month-button').click (event)->
+  $('#week-view').click (event)->
+    event.preventDefault()
+    $("#dashboard-container").load("/reload_container?view=week")
+    $("li.active").attr("class", "")
+    $('#week-view').parent().attr("class", "active")
+    showArrows("week")
+    
+  $('#month-view').click (event)->
     event.preventDefault()
     $("#dashboard-container").load("/reload_container?view=month")
     $("li.active").attr("class", "")
-    $('#month-button').parent().attr("class", "active")
-    visibleArrows("month")
+    $('#month-view').parent().attr("class", "active")
+    showArrows("month")
