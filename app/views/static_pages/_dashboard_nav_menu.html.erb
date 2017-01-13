@@ -4,13 +4,19 @@
   
   <div class="date-container dashboard-nav-menu-item">
     <input type="text" id="datepicker">
-    <a href="#" id="double-date-left"><i class="fa fa-angle-double-left"></i></span></a>
-    <a href="#" id="date-left"><span class="fa fa-angle-left"></span></a><!-- no spaces or tabs to avoid uderline when link is clicked !--> 
+
+    <a href="#" class="date-arrows" id="double-date-left"><i class="fa fa-angle-double-left"></i></span></a>
+    <a href="#" class="date-arrows" id="date-left"><span class="fa fa-angle-left"></span></a><!-- no spaces or tabs to avoid uderline when link is clicked !--> 
     <div id="date-field-container">
       <span id="date-field"></span>
+      <a href="#" class="year-arrows" id="double-year-left"><i class="fa fa-angle-double-left"></i></span></a>
+        <span id="year-field"></span>
+      <a href="#" class="year-arrows" id="double-year-right"><i class="fa fa-angle-double-right"></i></span></a>
     </div>
-    <a href="#" id="date-right"><span class="fa fa-angle-right"></span></a> <!-- no spaces or tabs to avoid uderline when link is clicked !--> 
-    <a href="#" id="double-date-right"><i class="fa fa-angle-double-right"></i></span></a>
+    <a href="#" class="date-arrows"  id="date-right"><span class="fa fa-angle-right"></span></a> <!-- no spaces or tabs to avoid uderline when link is clicked !--> 
+    <a href="#" class="date-arrows" id="double-date-right"><i class="fa fa-angle-double-right"></i></span></a>
+   
+
   </div>
   
   <div class="view-container dashboard-nav-menu-item">
@@ -18,12 +24,18 @@
       <li class="active"><a href="#" id="day-view">Day</a></li>
       <li><a href="#" id="week-view">Week</a></li>
       <li><a href="#" id="month-view">Month</a></li>
-      <li><a href="#">Year</a></li>
+      <li><a href="#" id="year-view" class="year-dropdown-toggle" data-toggle="dropdown">Year <span class="caret"></span></a>
+        <ul class="year-dropdown-menu">
+          <li><a href="#" class="yv-year-select" id="yv-last-year"></a></li>
+          <li><a href="#" class="yv-year-select" id="yv-current-year"></a></li>
+          <li><a href="#" class="yv-year-select" id="yv-next-year"></a></li>
+        </ul>
+      </li>
     </ul>
   </div>
   
   <div class="nav-container dashboard-nav-menu-item">
-    <div class="refresh-button pull-right">
+    <div class="refresh-button">
       <a href="#"><span class="glyphicon glyphicon-repeat"></span></a>
     </div>
   </div>

@@ -1,0 +1,48 @@
+
+
+  <div id="year-container">
+    <!--<div><%= @year %></div>-->
+          <% @days = 0 %>
+          <% for j in 1..12 do %>
+          <% currentMonthDays = Time.days_in_month(j, @year) %>
+    <div class="year-container-month" id ="month-number-<%= j %>">
+      <div class="yv-month-name text-center"><%= Date::MONTHNAMES[j] %></div>
+      <div class="row-container dashboard-menu">
+        <div class="col-room dashboard-menu-item" id="year-room">
+          <div>Room</div>
+        </div>
+        <!-- Generate 30 divs for month days in menu !-->
+        
+        <% currentMonthDays.times do %>
+        <% @days+=1 %>
+        <%= content_tag(:div, content_tag(:div, "", class: "year-day", id: "year-menu-day#{@days}"), class: ["col-year", "dashboard-menu-item"]) %>
+        <% end %>
+      </div>
+      <div class="row-container dashboard-grid">
+        <div class="col-room dashboard-row-item">
+          <div>101</div>
+        </div>
+        <!-- Generate 30 divs for grid for each day !-->
+        <% currentMonthDays.times do %>
+        <%= content_tag(:div, content_tag(:div, "", class: "col-day"), class: ["col-year", "dashboard-row-item"]) %>
+        <% end %>
+      </div>
+      
+      <div class="row-container dashboard-grid">
+        <div class="col-room dashboard-row-item">
+          <div>102</div>
+        </div>
+        <!-- Generate 30 divs for grid for each day !-->
+        <% currentMonthDays.times do %>
+        <%= content_tag(:div, content_tag(:div, "", class: "col-day"), class: ["col-year", "dashboard-row-item"]) %>
+        <% end %>
+      </div>
+
+    </div>
+          <% end %>
+  </div>
+ <!-- Set month days in many, add 31st day if needed !-->  
+<script>
+  currentDateFieldVal = moment($('#year-field').text(), "YYYY");
+  setYearDays(currentDateFieldVal);
+</script>

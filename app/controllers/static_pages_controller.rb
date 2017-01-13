@@ -16,6 +16,7 @@ class StaticPagesController < ApplicationController
   
   def dashboard_reload
     @view = params[:view]
+    @year = params[:year].to_i || 2020
     respond_to do |format|
       format.js
     end

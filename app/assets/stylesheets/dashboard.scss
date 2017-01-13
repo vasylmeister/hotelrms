@@ -28,7 +28,7 @@ $dashboard-border: 1px solid #d9d9d9;
   text-align: center;
 }
 
-#date-field {
+#date-field, .yv-month-name, #year-field {
   font-size: 18px;
   color: #337ab7;
 }
@@ -46,15 +46,22 @@ $dashboard-border: 1px solid #d9d9d9;
   margin-left: 3px;
 }
 
- #double-date-right, #double-date-left {
-  font-size: 20px;
-  margin-right: 3px;
-  margin-left: 3px;
+#double-date-right, #double-date-left {
+  @extend #date-left;
   visibility: hidden;
+}
+
+#double-year-right, #double-year-left {
+  @extend #date-left;
+  display: none;
+  margin-right: 8px;
+  margin-left: 8px;
+
 }
 
 .refresh-button {
   display: inline-block;
+  margin-left: 13px;
 }
 
 
@@ -78,13 +85,12 @@ $dashboard-border: 1px solid #d9d9d9;
 }
 
 .dashboard-row-item {
-  padding: 5px;
-  text-align: center;
+  @extend .dashboard-menu-item;
   border: $dashboard-border;
 }
 
 
-// - column styles
+// - columns 
 .col-name {
   flex-basis: 0;
   flex-grow: 2;
@@ -104,7 +110,7 @@ $dashboard-border: 1px solid #d9d9d9;
   display: none;
 }
 
-// - grid items styles
+// - grid items
 .client-name {
   white-space: nowrap;
   overflow: hidden; 
@@ -120,9 +126,39 @@ $dashboard-border: 1px solid #d9d9d9;
   }
 }
 
-// - month-view styles
+// - month-view
 .last-day {
   display: none;
 }
 
 
+// - year view
+#year-container {
+  display: flex;
+  overflow: auto;
+
+
+}
+
+.year-container-month {
+  flex-shrink: 0;
+  width: 1000px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+}
+
+// - year dropdown
+
+.year-dropdown-menu {
+    position: absolute;
+    list-style: none;
+    display: none;
+    z-index: 2;
+    background-color: #fff;
+    padding: 0px 15px 10px 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#year-field {
+  display: none;
+}
