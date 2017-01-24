@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   
   root 'static_pages#home'
-  get 'about'   => 'static_pages#about'
-  get 'contact' => 'static_pages#contact'
-  get 'dashboard' => 'static_pages#dashboard_view', view: 'day'
-  get 'reload_container' => 'static_pages#dashboard_reload'
+  get 'about', to: 'static_pages#about'
+  get 'contact', to: 'static_pages#contact'
+  get 'dashboard', to: 'static_pages#dashboard_view', view: 'day'
+  get 'reload_container', to: 'static_pages#dashboard_reload'
   
   resources :rooms
 
