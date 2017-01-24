@@ -1,3 +1,22 @@
-// Place all the styles related to the Rooms controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// display rooms index and show
+.rooms-container, .room-list-row {
+  display: flex;
+}
+
+.rooms-item {
+  width: 300px;
+  border: 1px solid blue;
+}
+
+.room-list-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  border: 1px solid #aab000;
+  padding: 5px;
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+  min-width: 2px;
+}
