@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  pax: 1
+  max_pax: 1
+  extra_beds: 1
+  status: MyString
+  description: MyText
+
+two:
+  type: 
+  pax: 1
+  max_pax: 1
+  extra_beds: 1
+  status: MyString
+  description: MyText

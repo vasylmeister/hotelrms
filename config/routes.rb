@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'dashboard' => 'static_pages#dashboard_view', view: 'day'
   get 'reload_container' => 'static_pages#dashboard_reload'
+  
+  resources :rooms
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
