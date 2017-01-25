@@ -4,6 +4,7 @@ class RoomTest < ActiveSupport::TestCase
 
   def setup
     @room = Room.new(name: "101", size: "single room", room_type: "private", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "private")
+    @shared_room = Room.new(name: "102", size: "cuadruple room", room_type: "shared", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "shared")
   end
   
   test "should be valid" do
@@ -47,6 +48,11 @@ class RoomTest < ActiveSupport::TestCase
     assert_not @room.valid?
   end
   
+  test "max capacity should not be less than capacity" do
+    @room.max_pax = 0
+    assert_not @room.valid?
+  end
+  
   test "number of beds should be present" do
     @room.beds = nil
     assert_not @room.valid?
@@ -62,7 +68,9 @@ class RoomTest < ActiveSupport::TestCase
     assert_not @room.valid?
   end
   
-
+  # test "shared room should the same number of beds and private beds records" do
+  #   assert_equal(@shared_room.beds, @shared_room.private_beds.count)
+  # end
   
   
   

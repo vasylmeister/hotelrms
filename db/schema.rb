@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170121223009) do
+ActiveRecord::Schema.define(version: 20170125134707) do
+
+  create_table "private_beds", force: :cascade do |t|
+    t.integer "room_id"
+    t.index ["room_id"], name: "index_private_beds_on_room_id"
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
