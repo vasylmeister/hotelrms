@@ -14,9 +14,7 @@ class PrivateBed < ApplicationRecord
   
   def only_shared_room_has_private_bed
     room = Room.find(room_id)
-    if room.type != "shared"
-      errors.add(:room_id, "only shared room type can have private beds")
-    end
+    errors.add(:room_id, "only shared room type can have private beds") unless room.type == "shared"
   end
   
 end

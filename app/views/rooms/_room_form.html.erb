@@ -1,0 +1,22 @@
+<%= form_for(@room) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+
+    <%= render "room_list_menu" %>
+    
+    <div class="room-list-row">
+      <%= f.text_field :name, class: 'room-list-item' %>
+      <%= f.select(:size, ['single', 'double','double-double', 'twin', 'triple', 'quadruple', 'family', 'studio'], {include_blank: ""}, { :class => 'room-list-item' }) %>
+      <%= f.select(:room_type, ['private', 'shared'], {include_blank: ""}, { :class => 'room-list-item' }) %>
+      <%= f.number_field :bathrooms, class: 'room-list-item' %>
+      <%= f.select(:bathroom_type, ['private', 'shared'], {include_blank: ""}, { :class => 'room-list-item' }) %>
+      <%= f.number_field :pax, class: 'room-list-item' %>
+      <%= f.number_field :max_pax, class: 'room-list-item' %>
+      <%= f.number_field :beds, class: 'room-list-item' %>
+      <%= f.number_field :extra_beds, class: 'room-list-item' %>
+      <%= f.number_field :floor, class: 'room-list-item' %>
+      <%= f.text_field :description, class: 'room-list-item' %>
+      <%= f.submit yield(:button_text), class: "room-list-item" %>
+    </div>
+
+<% end %>
