@@ -3,7 +3,7 @@ require 'test_helper'
 class RoomTest < ActiveSupport::TestCase
 
   def setup
-    @room = Room.new(name: "101", size: "single room", room_type: "private", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "private")
+    @room = Room.new(name: "101", size: "single", room_type: "private", pax: 2, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "private" )
     @shared_room = Room.new(name: "102", size: "cuadruple room", room_type: "shared", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "shared")
   end
   
@@ -33,45 +33,66 @@ class RoomTest < ActiveSupport::TestCase
     assert_not @room.valid?
   end  
   
-  test "room_type should be present" do
+  test "size should be valid size" do
+    @room.size = "king"
+    assert_not @room.valid?
+  end 
+  
+  # testing group validations for room_type and bathroom_type
+    test "room_type should be present" do
     @room.room_type = ""
     assert_not @room.valid?
   end  
   
+  test "room_type should be valid type" do
+    @room.room_type = "friendly"
+    assert_not @room.valid?
+  end 
+  
+  # testing group validations for pax, max_pax, beds, bathrooms
   test "capacity should be present" do
     @room.pax = nil
     assert_not @room.valid?
   end
   
-  test "max capacity max_pax should be present" do
-    @room.max_pax = nil
+  test "capacity should be a number" do
+    @room.pax = 'b'
+    assert_not @room.valid?
+  end  
+  
+  test "capacity should be an integer" do
+    @room.pax = 2.5
+    assert_not @room.valid?
+  end    
+  
+  test "capacity should be greater than 0" do
+    @room.pax = 0
+    assert_not @room.valid?
+  end
+
+  test "capacity should not be greater than 10" do
+    @room.pax = 0
     assert_not @room.valid?
   end
   
   test "max capacity should not be less than capacity" do
-    @room.max_pax = 0
+    @room.max_pax = 1
     assert_not @room.valid?
   end
   
-  test "number of beds should be present" do
-    @room.beds = nil
+  # testing group validations for floor and extra_beds
+  test "floor should be a number" do
+    @room.pax = 'b'
     assert_not @room.valid?
-  end
+  end  
   
-  test "number of bathrooms should be present" do
-    @room.bathrooms = nil
-    assert_not @room.valid?
-  end
-  
-  test "type of bathroom should be present" do
-    @room.bathroom_type = ""
+  test "floor should be an integer" do
+    @room.floor = 2.2
     assert_not @room.valid?
   end
   
   # test "shared room should the same number of beds and private beds records" do
   #   assert_equal(@shared_room.beds, @shared_room.private_beds.count)
   # end
-  
-  
   
 end

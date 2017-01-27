@@ -5,5 +5,6 @@
     <li class="list-group-item"><%= room.name %> - a <strong><%= room.room_type %> <%= room.size %></strong> room</li>
     <li class="list-group-item">with <strong><%= room.bathrooms %> <%= room.bathroom_type %></strong> bathroom and <strong><%= room.beds %></strong> bed</li>
     <li class="list-group-item">Capacity(Max): <strong><%= room.pax %> (<%= room.max_pax %>)</strong></li>
+    <%= link_to "delete", room, method: :delete, data: { confirm: "You sure?" } %>
   </ul>
 </div>

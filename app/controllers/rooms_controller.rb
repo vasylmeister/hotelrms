@@ -15,13 +15,21 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
     if @room.save
+      @room.create_private_beds if @room.room_type == "shared"
       flash[:info] = "Room was successfuly created"
       redirect_to rooms_url
     else
       render 'new'
     end
   end
-
+  
+  def destroy
+    @room = Room.find(params[:id]).destroy
+    flash[:success] = "Room deleted"
+    redirect_to rooms_url
+  end
+  
+  
   private
   
     def room_params
