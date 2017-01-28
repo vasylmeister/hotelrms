@@ -39,7 +39,7 @@ class RoomTest < ActiveSupport::TestCase
   end 
   
   # testing group validations for room_type and bathroom_type
-    test "room_type should be present" do
+  test "room_type should be present" do
     @room.room_type = ""
     assert_not @room.valid?
   end  
