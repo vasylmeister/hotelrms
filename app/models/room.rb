@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
-  
+  has_many :bed_type_associations, dependent: :destroy
+  has_many :bed_types, through: :bed_type_associations
   has_many :private_beds, dependent: :destroy
   
   # callbacks
