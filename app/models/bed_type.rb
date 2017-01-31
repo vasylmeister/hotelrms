@@ -1,5 +1,5 @@
 class BedType < ApplicationRecord
-  has_many :bed_type_associations
-  has_many :rooms, through: :bed_type_associations
+  has_many :room_bed_types
+  has_many :rooms, through: :room_bed_types
   
 end
