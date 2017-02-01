@@ -10,14 +10,14 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @bed_types = BedType.all
+    @room.bed_types.build()
   end
   
+  #read comment_1 in Comments below
   def create
     @room = Room.new(room_params)
-    # @bed_type = BedType.find(params[:room][:bed_type_ids]) 
-    if @room.save 
-      # && @room.bed_types << @bed_type
+
+    if @room.save && @room.bed_type_ids = params[:room][:bed_type_ids]
 
       @room.create_private_beds if @room.room_type == "shared"
       flash[:info] = "Room was successfuly created"
@@ -52,21 +52,30 @@ class RoomsController < ApplicationController
   private
   
     def room_params
-      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description)
+      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, bed_type_ids: [:id])
     end
   
     # def bed_type_params
     #   params.require(:bed_types).permit(options: params[:bed_types].keys) if params[:bed_types].any?
     # end
 
+
 end
 
 
+# Comments
 
-
-
-
-
+# comment_1
+# I create a room and associate bed types with it. 
+# I wanted to do it the Rails way and create association automatically when Room is saved.
+# I have almost managed to do it, when I reached an error. When getting bed_type_attributes, id, 
+# it was trying to find an unexisting association of the unsaved room
+# rails console output:
+# params = {...}                                                                                                                                    
+# => {:room=>{:name=>"110", :size=>"single", :room_type=>"private", :pax=>1, :max_pax=>1, 
+# :beds=>1, :bathrooms=>1, :bathroom_type=>"private", :bed_types_attributes=>[{:id=>1}]}}
+# rm = Room.create(params[:room])
+# ActiveRecord::RecordNotFound: Couldn't find BedType with ID=1 for Room with ID=
 
 
 

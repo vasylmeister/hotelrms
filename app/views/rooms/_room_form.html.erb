@@ -17,7 +17,8 @@
       <%= f.number_field :floor, class: 'room-list-item' %>
       <%= f.text_field :description, class: 'room-list-item' %>
       <%= f.submit yield(:button_text), class: "room-list-item" %>
-      <%= f.collection_select(:bed_types=, BedType.all, :id, :name) %>
+
+      <%= f.collection_select(:bed_type_ids, BedType.all, :id, :name) %>
 
 
 

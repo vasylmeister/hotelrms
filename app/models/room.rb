@@ -1,8 +1,9 @@
 class Room < ApplicationRecord
-  has_many :room_bed_types, dependent: :destroy
+  has_many :room_bed_types, inverse_of: :room, dependent: :destroy
   has_many :bed_types, through: :room_bed_types
   has_many :private_beds, dependent: :destroy
   
+  accepts_nested_attributes_for :bed_types
   # callbacks
   before_update :adjust_private_beds, if: :beds_changed?
   

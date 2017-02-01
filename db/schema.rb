@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170131221111) do
 
   create_table "room_bed_types", force: :cascade do |t|
     t.integer "room_id"
-    t.integer "private_bed_id"
-    t.index ["private_bed_id"], name: "index_room_bed_types_on_private_bed_id"
+    t.integer "bed_type_id"
+    t.index ["bed_type_id"], name: "index_room_bed_types_on_bed_type_id"
     t.index ["room_id"], name: "index_room_bed_types_on_room_id"
   end
 

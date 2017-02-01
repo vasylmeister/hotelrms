@@ -1,0 +1,5 @@
+from _room_form
+
+      <%= f.fields_for :bed_types do |f_bed_type| %>
+      <%= f_bed_type.collection_select(:id, BedType.all, :id, :name) %>
+      <% end %>
