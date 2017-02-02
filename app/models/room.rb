@@ -4,6 +4,13 @@ class Room < ApplicationRecord
   has_many :private_beds, dependent: :destroy
   
   accepts_nested_attributes_for :bed_types
+
+  def bed_types_attributes=(attributes)
+    attributes = attributes.to_h
+    self.bed_types << attributes.map {|item| BedType.find(item[1][:id]) } # Preferably finding posts should be scoped
+    super
+  end
+  
   # callbacks
   before_update :adjust_private_beds, if: :beds_changed?
   
@@ -17,6 +24,8 @@ class Room < ApplicationRecord
   validates :floor, :extra_beds, numericality: { only_integer: true, allow_nil: true }
   
   validate :max_capacity_cannot_be_less_than_capacity
+  
+  
   
   # cutom validations
   def max_capacity_cannot_be_less_than_capacity

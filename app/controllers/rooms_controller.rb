@@ -10,15 +10,14 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @room.bed_types.build()
+    4.times {@room.bed_types.build}
   end
   
   #read comment_1 in Comments below
   def create
     @room = Room.new(room_params)
-
-    if @room.save && @room.bed_type_ids = params[:room][:bed_type_ids]
-
+    if @room.save
+      # && @room.bed_type_ids = params[:room][:bed_type_ids]
       @room.create_private_beds if @room.room_type == "shared"
       flash[:info] = "Room was successfuly created"
       redirect_to rooms_url
@@ -29,6 +28,7 @@ class RoomsController < ApplicationController
   
   def edit
     @room = Room.find(params[:id])
+    @bed_types = @room.bed_types
   end
   
   def update
@@ -52,7 +52,8 @@ class RoomsController < ApplicationController
   private
   
     def room_params
-      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, bed_type_ids: [:id])
+      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, bed_types_attributes: [
+        :id, :name, :width])
     end
   
     # def bed_type_params
