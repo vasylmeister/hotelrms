@@ -1,18 +1,19 @@
 class Room < ApplicationRecord
-  has_many :room_bed_types, inverse_of: :room, dependent: :destroy
+  has_many :room_bed_types, inverse_of: :room, autosave: true, dependent: :destroy
   has_many :bed_types, through: :room_bed_types
   has_many :private_beds, dependent: :destroy
   
   accepts_nested_attributes_for :bed_types
-
+  
   def bed_types_attributes=(attributes)
-    attributes = attributes.to_h
-    self.bed_types << attributes.map {|item| BedType.find(item[1][:id]) } # Preferably finding posts should be scoped
+    attr_array = attributes.map {|item| item[1][:id] }
+    self.bed_type_ids = attr_array # Preferably finding posts should be scoped
     super
   end
   
   # callbacks
-  before_update :adjust_private_beds, if: :beds_changed?
+  before_update :adjust_private_beds, if: :beds_changed? || :room_type_changed?
+  # before_update :drop_bed_types
   
   PRIVACY_TYPE = ["private", "shared"]
   ROOM_SIZES = ['single', 'double','double-double', 'twin', 'triple', 'quadruple', 'family', 'studio']
@@ -49,10 +50,13 @@ class Room < ApplicationRecord
 
     # adjust  private_beds for shared room if number of beds changed
     def adjust_private_beds
-      diff = self.beds - self.private_beds.count
-        diff.abs.times do
-          diff > 0 ? self.private_beds.create!() : self.private_beds.destroy(self.private_beds.last)
-        end
+      if self.room_type = "shared"
+        diff = self.beds - self.private_beds.count
+          diff.abs.times {diff > 0 ? self.private_beds.create!() : self.private_beds.destroy(self.private_beds.last)}
+      end
     end
   
+    def drop_bed_types
+      self.bed_types.clear
+    end
 end

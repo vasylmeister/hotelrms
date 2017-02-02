@@ -33,8 +33,7 @@ class RoomsController < ApplicationController
   
   def update
     @room = Room.find(params[:id])
-    if @room.update_attributes(room_params)
-      
+    if @room.update(room_params)
       flash[:success] = "Room updated"
       redirect_to @room
     else
