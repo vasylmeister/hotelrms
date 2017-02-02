@@ -4,10 +4,12 @@ class Room < ApplicationRecord
   has_many :private_beds, dependent: :destroy
   
   accepts_nested_attributes_for :bed_types
+  accepts_nested_attributes_for :room_bed_types
+  
   
   def bed_types_attributes=(attributes)
-    attr_array = attributes.map {|item| item[1][:id] }
-    self.bed_type_ids = attr_array # Preferably finding posts should be scoped
+    attr_array = attributes.collect {|item| item[1][:id] }
+    self.bed_type_ids = attr_array
     super
   end
   
