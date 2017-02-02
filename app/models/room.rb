@@ -7,11 +7,11 @@ class Room < ApplicationRecord
   accepts_nested_attributes_for :room_bed_types
   
   
-  def bed_types_attributes=(attributes)
-    attr_array = attributes.collect {|item| item[1][:id] }
-    self.bed_type_ids = attr_array
-    super
-  end
+  # def bed_types_attributes=(attributes)
+  #   attr_array = attributes.collect {|item| item[1][:id] }
+  #   self.bed_type_ids = attr_array
+  #   super
+  # end
   
   # callbacks
   before_update :adjust_private_beds, if: :beds_changed? || :room_type_changed?

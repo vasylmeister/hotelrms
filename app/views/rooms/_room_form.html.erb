@@ -18,6 +18,15 @@
       <%= f.text_field :description, class: 'room-list-item' %>
       <%= f.submit yield(:button_text), class: "room-list-item" %>
       <!--<#%= f.collection_select(:bed_type_ids, BedType.all, :id, :name) %>-->
+      <!--<#%= f.collection_select(:bed_type_ids, BedType.all, :id, :name) %>-->
+
+
+    <!--  <@%= f.collection_check_boxes :bed_type_ids, BedType.all, :id, :name do |b| %>-->
+    <!--<div class="collection-check-box">-->
+    <!--  <@%= b.check_box %>-->
+    <!--  <@%= b.label %>-->
+    <!--</div>-->
+    <!--<@% end %>-->
 
       <%= render partial: "bed_type_#{action}", locals: {f: f} %>
 

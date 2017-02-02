@@ -1,5 +1,3 @@
-      <% @room.bed_types.each do |bed_type| %>
-      <%= f.fields_for :bed_types, bed_type do |f_bed_type| %>
-            <%= f_bed_type.collection_select(:id, BedType.all, :id, :name) %>
-      <% end %>
+      <% 4.times do %>
+      <%= f.collection_select(:bed_type_ids, BedType.all, :id, :name, {}, { name: "room[bed_type_ids][]" }) %>
       <% end %>

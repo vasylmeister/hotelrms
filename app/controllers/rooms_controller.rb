@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
   
     def room_params
       params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, room_bed_types_attributes: [:id, :bed_type_id], 
-      bed_types_attributes: [:id, :name, :width])
+      bed_types_attributes: [:id, :name, :width], :bed_type_ids => [])
     end
   
     # def bed_type_params
