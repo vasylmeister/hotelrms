@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   has_many :bed_types, through: :room_bed_types
   has_many :private_beds, dependent: :destroy
   
-  accepts_nested_attributes_for :bed_types
+  accepts_nested_attributes_for :bed_types, reject_if: :all_blank
   accepts_nested_attributes_for :room_bed_types
   
   
