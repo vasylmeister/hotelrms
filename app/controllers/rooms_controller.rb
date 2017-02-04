@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    4.times {@room.bed_types.build}
+    @room.bed_types.build
   end
   
   #read comment_1 in Comments below
@@ -51,7 +51,8 @@ class RoomsController < ApplicationController
   private
   
     def room_params
-      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, room_bed_types_attributes: [:id, :bed_type_id], 
+      params.require(:room).permit(:name, :size, :room_type, :pax, :max_pax, :beds, :extra_beds, :bathrooms, :bathroom_type, :floor, :description, 
+      room_bed_types_attributes: [:id, :bed_type_id, :_destroy], 
       bed_types_attributes: [:id, :name, :width])
     end
   
