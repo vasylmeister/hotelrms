@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   accepts_nested_attributes_for :bed_types, reject_if: :all_blank
   accepts_nested_attributes_for :room_bed_types, allow_destroy: true
   
-  
+  #had to include this method to make things work. there is a known issue that prevents 
   def bed_types_attributes=(attributes)
     attr_array = attributes.collect {|item| item[1][:id] }
     self.bed_type_ids = attr_array
@@ -14,7 +14,6 @@ class Room < ApplicationRecord
   end
   
   # callbacks
-
   before_update :adjust_private_beds, if: :beds_changed? || :room_type_changed?
   
   PRIVACY_TYPE = ["private", "shared"]
@@ -26,11 +25,14 @@ class Room < ApplicationRecord
   validates :size, presence: true,  inclusion: { in: ROOM_SIZES, message: "%{value} is not a valid room size" }
   validates :floor, :extra_beds, numericality: { only_integer: true, allow_nil: true }
   
-  validate :max_capacity_cannot_be_less_than_capacity, :bed_types_count_valid?
+  # custom validations
+  validate :max_capacity_cannot_be_less_than_capacity
+  validate :bed_types_count_valid?, on: :create
+  validate :room_bed_types_count_valid?, on: :update
   
   
   
-  # cutom validations
+  # cutom validation methods
   def max_capacity_cannot_be_less_than_capacity
     if pax && max_pax
       if max_pax < pax
@@ -58,7 +60,22 @@ class Room < ApplicationRecord
       end
     end
   
+    # this method was not working properly, so I had to make to separate validations for create and update actions
+    # def bed_types_count_valid?
+    #   errors.add(:beds, "Wrong number of bed types#{bed_types.size}") unless room_bed_types.reject(&:marked_for_destruction?).size == beds || bed_types.size == beds
+    # end
+    # error explanation: on create action room_bed_types.reject(&:marked_for_destruction?).size was getting wrong values
+    
+    #create validation
     def bed_types_count_valid?
-      errors.add(:bed_types_ids, "Wrong number of bed types") unless room_bed_types.reject(&:marked_for_destruction?).count == beds
+       errors.add(:base, "Wrong number of bed types#{bed_types.size}") unless bed_types.size == beds
     end
+    
+    #update validation
+    def room_bed_types_count_valid?
+       errors.add(:base, "Wrong number of bed types#{bed_types.size}") unless room_bed_types.reject(&:marked_for_destruction?).count == beds
+    end
+
 end
+
+

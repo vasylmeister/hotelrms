@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @room.bed_types.build
+    2.times {@room.bed_types.build}
   end
   
   #read comment_1 in Comments below
@@ -77,6 +77,7 @@ end
 # :beds=>1, :bathrooms=>1, :bathroom_type=>"private", :bed_types_attributes=>[{:id=>1}]}}
 # rm = Room.create(params[:room])
 # ActiveRecord::RecordNotFound: Couldn't find BedType with ID=1 for Room with ID=
+# I had to rewrite one method to go around this error
 
 
 
