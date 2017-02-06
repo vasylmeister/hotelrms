@@ -14,8 +14,8 @@ class Room < ApplicationRecord
   end
   
   # callbacks
+
   before_update :adjust_private_beds, if: :beds_changed? || :room_type_changed?
-  # before_update :drop_bed_types
   
   PRIVACY_TYPE = ["private", "shared"]
   ROOM_SIZES = ['single', 'double','double-double', 'twin', 'triple', 'quadruple', 'family', 'studio']
@@ -26,7 +26,7 @@ class Room < ApplicationRecord
   validates :size, presence: true,  inclusion: { in: ROOM_SIZES, message: "%{value} is not a valid room size" }
   validates :floor, :extra_beds, numericality: { only_integer: true, allow_nil: true }
   
-  validate :max_capacity_cannot_be_less_than_capacity
+  validate :max_capacity_cannot_be_less_than_capacity, :bed_types_count_valid?
   
   
   
@@ -52,13 +52,13 @@ class Room < ApplicationRecord
 
     # adjust  private_beds for shared room if number of beds changed
     def adjust_private_beds
-      if self.room_type = "shared"
+      if self.room_type == "shared"
         diff = self.beds - self.private_beds.count
           diff.abs.times {diff > 0 ? self.private_beds.create!() : self.private_beds.destroy(self.private_beds.last)}
       end
     end
   
-    def drop_bed_types
-      self.bed_types.clear
+    def bed_types_count_valid?
+      errors.add(:bed_types_ids, "Wrong number of bed types") unless room_bed_types.reject(&:marked_for_destruction?).count == beds
     end
 end
