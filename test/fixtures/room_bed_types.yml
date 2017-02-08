@@ -4,8 +4,32 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+room_bed_type1:
+  id: 1
+  room_id: 2
+  bed_type_id: 1
+
+room_bed_type2:
+  id: 2
+  room_id: 2
+  bed_type_id: 1
+
+room_bed_type3:
+  id: 3
+  room_id: 2
+  bed_type_id: 2
+  
+room_bed_type4:
+  id: 4
+  room_id: 3
+  bed_type_id: 2
+
+room_bed_type5:
+  id: 5
+  room_id: 3
+  bed_type_id: 2
+
+room_bed_type6:
+  id: 6
+  room_id: 3
+  bed_type_id: 2

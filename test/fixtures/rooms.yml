@@ -1,2 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+room1:
+  id: 2
+  name: "201"
+  size: "double"
+  room_type: "private"
+  pax: 2
+  max_pax: 2
+  beds: 3
+  bathrooms: 1
+  bathroom_type: "private"
+  extra_beds: 0
+  floor: 1
+  description: "I am a very comfortable room"
+
+room2:
+  id: 3
+  name: "202"
+  size: "double"
+  room_type: "shared"
+  pax: 2
+  max_pax: 2
+  beds: 3
+  bathrooms: 1
+  bathroom_type: "shared"
+  extra_beds: 0
+  floor: 1
+  description: "I am a very comfortable room"

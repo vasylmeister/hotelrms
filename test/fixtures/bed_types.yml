@@ -4,3 +4,17 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+bed_type1:
+  id: 1
+  name: 'twin'
+  width: 0
+
+bed_type2:
+  id: 2
+  name: 'double'
+  width: 0
+
+bed_type3:
+  id: 3
+  name: 'sofa-bed'
+  width: 0

@@ -1,7 +1,7 @@
 <div class="room-list-item">  
   <div class="bed-type-select-container">
     <%= f.fields_for :room_bed_types do |f_bed_type| %>
-      <%= f_bed_type.collection_select(:bed_type_id, BedType.all, :id, :name) %>
+      <%= f_bed_type.collection_select(:bed_type_id, BedType.all, :id, :name, { include_blank: true }) %>
       <%= f_bed_type.check_box :_destroy %>
 
     <% end %>

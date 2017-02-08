@@ -3,11 +3,13 @@ require 'test_helper'
 class RoomTest < ActiveSupport::TestCase
 
   def setup
-    @room = Room.new(name: "101", size: "single", room_type: "private", pax: 2, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "private" )
-    @shared_room = Room.new(name: "102", size: "cuadruple room", room_type: "shared", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "shared")
+    @room = Room.new(name: "101", size: "single", room_type: "private", pax: 2, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "private", 
+    bed_types_attributes: {'0': {id: 1 }})
+    @shared_room = Room.new(name: "102", size: "cuadruple room", room_type: "shared", pax: 1, max_pax: 2, beds: 1, bathrooms: 1, bathroom_type: "shared",
+    bed_types_attributes: {'0': {id: 3 }})
   end
   
-  test "should be valid" do
+  test "room should be valid" do
     assert @room.valid?
   end
   
@@ -33,7 +35,7 @@ class RoomTest < ActiveSupport::TestCase
     assert_not @room.valid?
   end  
   
-  test "size should be valid size" do
+  test "size should be a valid size" do
     @room.size = "king"
     assert_not @room.valid?
   end 
@@ -44,7 +46,7 @@ class RoomTest < ActiveSupport::TestCase
     assert_not @room.valid?
   end  
   
-  test "room_type should be valid type" do
+  test "room_type should be a valid type" do
     @room.room_type = "friendly"
     assert_not @room.valid?
   end 

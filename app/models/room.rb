@@ -1,10 +1,10 @@
 class Room < ApplicationRecord
-  has_many :room_bed_types, inverse_of: :room, autosave: true, dependent: :destroy
+  has_many :room_bed_types, autosave: true, dependent: :destroy
   has_many :bed_types, through: :room_bed_types
   has_many :private_beds, dependent: :destroy
   
   accepts_nested_attributes_for :bed_types, reject_if: :all_blank
-  accepts_nested_attributes_for :room_bed_types, allow_destroy: true
+  accepts_nested_attributes_for :room_bed_types, reject_if: :all_blank, allow_destroy: true
   
   #had to include this method to make things work. there is a known issue that prevents 
   def bed_types_attributes=(attributes)
