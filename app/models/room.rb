@@ -14,7 +14,10 @@ class Room < ApplicationRecord
   end
   
   # callbacks
-  before_update :adjust_private_beds, if: :beds_changed? || :room_type_changed?
+  before_update do
+    adjust_private_beds if room_type_changed?
+    adjust_private_beds if beds_changed?
+  end
   
   PRIVACY_TYPE = ["private", "shared"]
   ROOM_SIZES = ['single', 'double','double-double', 'twin', 'triple', 'quadruple', 'family', 'studio']
@@ -49,14 +52,16 @@ class Room < ApplicationRecord
       self.private_beds.create()
     end
   end
-  
+
   private
 
     # adjust  private_beds for shared room if number of beds changed
     def adjust_private_beds
       if self.room_type == "shared"
         diff = self.beds - self.private_beds.count
-          diff.abs.times {diff > 0 ? self.private_beds.create!() : self.private_beds.destroy(self.private_beds.last)}
+          diff.abs.times {diff > 0 ? self.private_beds.create() : self.private_beds.destroy(self.private_beds.last)}
+      else
+        self.private_beds.clear # need to modify this behaviour later to check for assigned reservations for these private rooms
       end
     end
   

@@ -4,3 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
+private_bed1:
+  id: 1
+  room_id: 3
+
+private_bed2:
+  id: 2
+  room_id: 3
+  
+private_bed3:
+  id: 3
+  room_id: 3

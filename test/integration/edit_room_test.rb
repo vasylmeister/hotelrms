@@ -161,4 +161,19 @@ class EditRoomTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?, "Should be a flash message"
   end
   
+  test "should update private beds when the number of beds changes" do
+    get edit_room_path(@shared_room)
+    patch room_path(@shared_room), params: { room: {
+        name: "202", 
+        size: "single", 
+        room_type: "shared",
+        pax: 2, max_pax: 2, beds: 2, bathrooms: 1, 
+        bathroom_type: "private", 
+        room_bed_types_attributes: {'0': {id: 4, bed_type_id: 2}, '1': {id: 5, bed_type_id: 2}, '2': {id: 6, bed_type_id: 2, _destroy: 1}}}}
+    assert @shared_room.private_beds.count == @shared_room.reload.beds, "Private beds count should be equal to the number of beds"
+    assert_redirected_to room_url(@shared_room)
+    follow_redirect!
+    assert_not flash.empty?, "Should be a flash message"
+  end
+  
 end
