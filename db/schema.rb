@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170131221111) do
+ActiveRecord::Schema.define(version: 20170222014701) do
 
   create_table "bed_types", force: :cascade do |t|
     t.string "name"
     t.float  "width"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "first_name",   null: false
+    t.string   "last_name",    null: false
+    t.string   "phone_number", null: false
+    t.string   "email"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["last_name"], name: "index_clients_on_last_name"
+    t.index ["phone_number"], name: "index_clients_on_phone_number"
   end
 
   create_table "private_beds", force: :cascade do |t|
