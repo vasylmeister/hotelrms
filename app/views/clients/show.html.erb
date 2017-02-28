@@ -7,6 +7,7 @@
       <li class="list-group-item"><%= @client.phone_number %></li>
       <li class="list-group-item"><%= @client.email %></li>
     </ul>
+    <%= link_to "Edit", edit_client_path(@client), class: "btn btn-default" %>
   </div>
 </div>
 

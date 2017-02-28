@@ -1,5 +1,7 @@
 <div class="page-header">
   <h1>Clients List</h1>
+  <%= link_to "Add new client", new_client_path, class: "btn btn-info" %>
+  <!--search clients by name, phone number, email-->
 </div>
 
  <table class="table">
@@ -13,7 +15,7 @@
     </thead>
     <tbody>
     <% for client in @clients do %>
-      <tr>
+      <tr data-link="<%= client_path(client) %>" class="tr-link-style">
         <td><%= client.first_name %></td>
         <td><%= client.last_name %></td>
         <td><%= client.phone_number %></td>

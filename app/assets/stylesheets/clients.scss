@@ -1,3 +1,9 @@
 // Place all the styles related to the clients controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// make tr in index.html act like a link on hover  
+.tr-link-style:hover {
+  cursor: pointer;
+  background-color: #F0F8FF;
+}

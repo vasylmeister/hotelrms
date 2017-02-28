@@ -21,7 +21,20 @@ class ClientsController < ApplicationController
       render 'new'
     end
   end
-
+  
+  def edit
+    @client = Client.find(params[:id])
+  end
+  
+  def update
+    @client = Client.find(params[:id])
+    if @client.update_attributes(client_params)
+      flash[:success] = "Client was succesfully updated"
+      redirect_to @client
+    else
+      render "edit.html.erb"
+    end
+  end
 
 
 
