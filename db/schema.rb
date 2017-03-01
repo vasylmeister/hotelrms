@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222014701) do
+ActiveRecord::Schema.define(version: 20170301001344) do
 
   create_table "bed_types", force: :cascade do |t|
     t.string "name"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20170222014701) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["last_name"], name: "index_clients_on_last_name"
-    t.index ["phone_number"], name: "index_clients_on_phone_number"
+    t.index ["phone_number", "email"], name: "index_clients_on_phone_number_and_email", unique: true
   end
 
   create_table "private_beds", force: :cascade do |t|
