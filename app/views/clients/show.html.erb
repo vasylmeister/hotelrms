@@ -8,6 +8,7 @@
       <li class="list-group-item"><%= @client.email %></li>
     </ul>
     <%= link_to "Edit", edit_client_path(@client), class: "btn btn-default" %>
+    <%= link_to "delete", room, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
   </div>
 </div>
 
