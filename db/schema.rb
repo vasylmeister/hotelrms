@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302131302) do
+ActiveRecord::Schema.define(version: 20170303143324) do
 
   create_table "bed_types", force: :cascade do |t|
     t.string "name"
@@ -18,14 +18,16 @@ ActiveRecord::Schema.define(version: 20170302131302) do
   end
 
   create_table "cards", force: :cascade do |t|
-    t.string   "card_name",  null: false
-    t.string   "number",     null: false
-    t.string   "type"
-    t.integer  "exp_month",  null: false
-    t.integer  "exp_year",   null: false
+    t.string   "card_name",    null: false
+    t.string   "number",       null: false
+    t.string   "card_type"
+    t.integer  "exp_month",    null: false
+    t.integer  "exp_year",     null: false
     t.integer  "cvv"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "cc_info_id"
+    t.string   "cc_info_type"
   end
 
   create_table "clients", force: :cascade do |t|

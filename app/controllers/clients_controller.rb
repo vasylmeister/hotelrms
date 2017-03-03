@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
   
   def index
-    @clients = Client.all
+    @clients = Client.not_deleted.all
   end
   
   def show
@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
   
   def new
     @client = Client.new
+    @client.cards.build
   end
   
   def create
@@ -37,7 +38,7 @@ class ClientsController < ApplicationController
   end
 
   def destroy
-    @client = Client.find(params[:id]).destroy
+    @client = Client.find(params[:id]).destroy!
     flash[:success] = "Client was deleted"
     redirect_to clients_url
   end
@@ -45,6 +46,7 @@ class ClientsController < ApplicationController
   private
   
     def client_params
-       params.require(:client).permit(:first_name, :last_name, :phone_number, :email)
+       params.require(:client).permit(:first_name, :last_name, :phone_number, :email, 
+        cards_attributes: [:id, :card_name, :number, :card_type, :exp_month, :exp_year, :cvv])
     end
 end
