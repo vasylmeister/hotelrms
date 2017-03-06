@@ -22,7 +22,7 @@
             <%= f.label :exp_year, class: "control-label" %>
             <%= f_card.number_field :exp_year, class: "form-control" %>
             <%= f.label :cvv, class: "control-label" %>
-            <%= f_card.number_field :cvv, class: "form-control" %>
+            <%= f_card.text_field :cvv, class: "form-control" %>
           <% end %>
           <%= f.submit yield(:button_text), class: "btn btn-default" %>    
     <% end %>
